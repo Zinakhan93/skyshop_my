@@ -1,4 +1,8 @@
 package org.skypro.skyshop.controller;
 
+import org.springframework.web.bind.annotation.RestController;
+@RestController
 public class ShopController {
+
+
 }
