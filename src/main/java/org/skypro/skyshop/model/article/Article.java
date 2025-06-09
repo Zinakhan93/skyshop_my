@@ -3,12 +3,15 @@ package org.skypro.skyshop.model.article;
 import org.skypro.skyshop.model.search.Searchable;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public final class Article implements Searchable {
+    private final UUID id;
     private String title;
     private String text;
 
-    public Article(String title, String text) {
+    public Article(UUID id ,String title, String text) {
+        this.id = id;
         if (title==null || title.isBlank()){
             throw new IllegalArgumentException("Название статьи не может быть пустым или null");
         }
@@ -17,6 +20,11 @@ public final class Article implements Searchable {
             throw new IllegalArgumentException("Текст статьи не может быть пустым или null");
         }
         this.text = text;
+    }
+
+    @Override
+    public UUID getId() {
+        return id;
     }
 
     public String getTitle() {
