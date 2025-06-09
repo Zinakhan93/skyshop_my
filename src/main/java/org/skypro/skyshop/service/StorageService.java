@@ -8,7 +8,7 @@ import org.skypro.skyshop.model.product.SimpleProduct;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-@Service
+
 public class StorageService {
     private final Map<UUID, Product> products  = new HashMap<>();
     private final Map<UUID, Article> articles = new HashMap<>();
