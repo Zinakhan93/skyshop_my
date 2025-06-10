@@ -16,7 +16,7 @@ public class SearchService {
     public List<Searchable> search (String query){
         String queryLower = query.toLowerCase();
         return storageService.getAll().stream()
-                .filter(item->item.getSearchableName().contains(queryLower))
+                .filter(item->item.getSearchTerm().contains(queryLower))
                 .toList();
 
     }
