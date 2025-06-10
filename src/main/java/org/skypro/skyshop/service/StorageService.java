@@ -9,6 +9,8 @@ import org.skypro.skyshop.model.search.Searchable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
+
 @Service
 public class StorageService {
     private final Map<UUID, Product> products  = new HashMap<>();
@@ -34,20 +36,23 @@ public class StorageService {
         articles.put(article.getId(), article);
     }
 
-    public List<Product> getAllProducts(){
-        return new ArrayList<>( Collections.unmodifiableCollection(products.values()));
-    }
-    public List<Article> getAllArticles(){
-        return new ArrayList<>( Collections.unmodifiableCollection(articles.values()));
+  //Методы получения всех товаров и статей:
+    public Collection<Product> getAllProducts() {
+        return products.values();
     }
 
-    public List<Searchable>getAll(){
-        List<Searchable>result = new ArrayList<>();
-        result.addAll(products.values());
-        result.addAll(articles.values());
-        return result;
-
+    public Collection<Article> getAllArticles() {
+        return articles.values();
     }
+
+    // Метод получения всех Searchable (для поиска)
+    public Collection<Searchable> getAllSearchables() {
+        List<Searchable> list = new ArrayList<>();
+        list.addAll(products.values());
+        list.addAll(articles.values());
+        return list;
+    }
+
 
 
 }
