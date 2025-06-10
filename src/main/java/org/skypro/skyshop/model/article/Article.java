@@ -1,5 +1,6 @@
 package org.skypro.skyshop.model.article;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.skypro.skyshop.model.search.Searchable;
 
 import java.util.Objects;
@@ -30,7 +31,7 @@ public final class Article implements Searchable {
     public String getTitle() {
         return title;
     }
-
+    @JsonIgnore
     @Override
     public String getSearchTerm() {
         return toString();
@@ -40,7 +41,7 @@ public final class Article implements Searchable {
         return title;
     }
 
-
+    @JsonIgnore
     @Override
     public String getContentType() {
         return "ARTICLE";

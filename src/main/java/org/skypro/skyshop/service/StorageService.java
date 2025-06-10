@@ -9,7 +9,7 @@ import org.skypro.skyshop.model.search.Searchable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-
+@Service
 public class StorageService {
     private final Map<UUID, Product> products  = new HashMap<>();
     private final Map<UUID, Article> articles = new HashMap<>();
@@ -18,12 +18,20 @@ public class StorageService {
         initData();
     };
     private void initData(){
-        products.put(UUID.randomUUID(),new SimpleProduct("Яблоко",100));
-        products.put(UUID.randomUUID(),new DiscountedProduct("Хлеб",150,10));
-        products.put(UUID.randomUUID(),new FixPriceProduct("Молоко"));
-        products.put(UUID.randomUUID(),new SimpleProduct("Кефир",80));
-        articles.put(UUID.randomUUID(),new Article("Кефир", "Содержание жиров 0%"));
-        articles.put(UUID.randomUUID(),new Article("Хлеб", "Содержание злаков"));
+        addProduct(new SimpleProduct(UUID.randomUUID(), "Яблоко", 300));
+        addProduct(new FixPriceProduct(UUID.randomUUID(), "Молоко"));
+        addProduct(new DiscountedProduct(UUID.randomUUID(), "Хлеб",150,10));
+        addProduct(new SimpleProduct(UUID.randomUUID(),"Кефир",80));
+        addArticle(new Article(UUID.randomUUID(), "Кефир", "Содержание жиров 0%"));
+        addArticle(new Article(UUID.randomUUID(), "Хлеб", "Содержание злаков"));
+
+    }
+    private void addProduct(Product product) {
+        products.put(product.getId(), product);
+    }
+
+    private void addArticle(Article article) {
+        articles.put(article.getId(), article);
     }
 
     public List<Product> getAllProducts(){
